@@ -58,13 +58,42 @@ skinparam linetype ortho
     + Curar(Caballero)
     + Defender(Caballero)
   }
-  class Enemigo
-  class JefeFinal
+  class Enemigo{
+    - EfectoEstado Estado[4]
+    - BarraVida Vida
+    - BarraMagica Magia
+    - AtaqueFisico AtaqueF[1..9]
+    - AtaqueMagico AtaqueM[1..9]
+    - ElementoMagico ElementoM[1..4]
+    - Combo Combo[1..5]
+    + Defender(Enemigo)
+    + Curar(Enemigo)
+    + Disparar(Enemigo)
+  }
+  class JefeFinal{
+    - EfectoEstado Estado[4]
+    - BarraVida Vida
+    - BarraMagica Magia
+    - AtaqueFisico AtaqueF[1..9]
+    - AtaqueMagico AtaqueM[1..9]
+    - ElementoMagico ElementoM[1..4]
+    - Combo Combo[1..5]
+    + Defender(Enemigo)
+    + Curar(Enemigo)
+    + Disparar(Enemigo)
+  }
   class NPC
   class AnimalCompaniero
-  class ControlJugador
-  class IAEnemigo
-  class IAAnimal
+  class ControlJugador{
+    + Convertir(ControlJugador)
+  }
+  class IAEnemigo{
+    + Convertir(IAEnemigo)
+    + Convertir(IAEnemigo)
+  }
+  class IAAnimal{
+    + Convertir(IAAnimal)
+  }
   class AnimacionPersonaje
   class AtaqueFisico
   class AtaqueMagico
