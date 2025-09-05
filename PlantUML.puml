@@ -1,0 +1,157 @@
+@startuml
+
+top to bottom direction
+skinparam ranksep 500
+skinparam nodesep 100
+skinparam linetype ortho
+
+
+  class JuegoCastleCrashers
+  {
+  - IAEnemigo Enemigo[]
+  - EventoAmbiente Evento[]
+  - EstadisticaPersonaje Estadistica[1..4]
+  - SistemaExperiencia Experiencia[1..4]
+  - GestorDatos Datos [1..4]
+  - MenuPrincipal Menu
+  - MenuPausa Pausa
+  - SelectorPersonaje Personaje[1..4]
+  - InterfazTienda Tienda
+  - Nivel Nivel[]
+  - Portal Portal[]
+  - ObjetoInteractivo Objeto[]
+  - Obstaculo Obstaculo[]
+  - ZonaSegura Seguro[2]
+  - Jugador Jugador[4]
+  }
+  class Nivel
+  class Portal 
+  class ObjetoInteractivo
+  class Obstaculo
+  class ZonaSegura
+  class EventoAmbiente 
+  class GestorDatos
+  class SistemaExperiencia
+  class EstadisticaPersonaje
+  class Jugador{
+    - EstadisticaPersonaje Estadistica
+    + AbrirMenu(Jugador)
+    + AbrirPausa(Jugador)
+    + Seleccionar(Jugador)
+    + AbrirTienda(Jugador)
+    + EntrarPortal(Jugador)
+    + InteractuarObjeto(Jugador)
+  }
+  class Caballero{
+    - EfectoEstado Estado[4]
+    - AtaqueFisico AtaqueF[1..3]
+    - AtaqueMagico AtaqueM[1..3]
+    - ElementoMagico ElementoM[1..4]
+    - Combo Combo[]
+    - EfectoEstado Estado[4]
+    - BarraVida Vida[100]
+    - BarraMagica Magia[100]
+    - BarraExperiencia Experiencia[]
+    - Inventario Inventario
+    + UsarAnimal(Caballero)
+    + Disparar(Caballero)
+    + Curar(Caballero)
+    + Defender(Caballero)
+  }
+  class Enemigo
+  class JefeFinal
+  class NPC
+  class AnimalCompaniero
+  class ControlJugador
+  class IAEnemigo
+  class IAAnimal
+  class AnimacionPersonaje
+  class AtaqueFisico
+  class AtaqueMagico
+  class ElementoMagico
+  class Combo
+  class Proyectil
+  class EfectoEstado
+  class Curacion
+  class Defensa
+  class BarraVida
+  class BarraMagica
+  class BarraExperiencia
+  class Inventario
+  class MenuPrincipal
+  class MenuPausa
+  class SelectorPersonaje
+  class InterfazTienda
+
+
+JuegoCastleCrashers *-- IAEnemigo
+JuegoCastleCrashers *-- "*"EventoAmbiente
+JuegoCastleCrashers *-- EstadisticaPersonaje
+JuegoCastleCrashers *-- SistemaExperiencia
+JuegoCastleCrashers *-- GestorDatos
+JuegoCastleCrashers *-- MenuPrincipal
+JuegoCastleCrashers *-- MenuPausa
+JuegoCastleCrashers *-- SelectorPersonaje
+JuegoCastleCrashers *-- InterfazTienda
+JuegoCastleCrashers *-- "*"Nivel
+JuegoCastleCrashers *-- "*"Portal
+JuegoCastleCrashers *-- "*"ObjetoInteractivo
+JuegoCastleCrashers *-- "*"Obstaculo
+JuegoCastleCrashers *-- "2"ZonaSegura
+JuegoCastleCrashers *-- "4"Jugador
+
+Jugador *-- EstadisticaPersonaje
+Jugador o-- MenuPrincipal
+Jugador o-- MenuPausa
+Jugador o-- SelectorPersonaje
+Jugador o-- InterfazTienda
+Jugador o-- Portal
+Jugador o-- ObjetoInteractivo
+Jugador --|> Caballero
+
+Caballero *-- AnimacionPersonaje
+Caballero *-- "2-3"AtaqueFisico
+Caballero *-- "2-3"AtaqueMagico
+Caballero *-- ElementoMagico
+Caballero *-- Combo
+Caballero *-- EfectoEstado
+Caballero *-- BarraVida
+Caballero *-- BarraMagica
+Caballero *-- BarraExperiencia
+Caballero *-- Inventario
+Caballero o-- AnimalCompaniero
+Caballero o-- Proyectil
+Caballero o-- Curacion
+Caballero o-- Defensa
+
+Enemigo *-- EfectoEstado
+Enemigo *-- BarraVida
+Enemigo *-- BarraMagica
+Enemigo *-- "1-5"AtaqueFisico
+Enemigo *-- "1-5"AtaqueMagico
+Enemigo *-- ElementoMagico
+Enemigo *-- Combo
+Enemigo o-- Defensa
+Enemigo o-- Curacion
+Enemigo o-- Proyectil
+
+JefeFinal *-- EfectoEstado
+JefeFinal *-- BarraVida
+JefeFinal *-- BarraMagica
+JefeFinal *-- "1-9"AtaqueFisico
+JefeFinal *-- "1-9"AtaqueMagico
+JefeFinal *-- ElementoMagico
+JefeFinal *-- Combo
+JefeFinal o--Proyectil
+JefeFinal o-- Defensa
+JefeFinal o-- Curacion
+
+NPC --|> ObjetoInteractivo
+
+ControlJugador o-- Jugador
+
+IAEnemigo o-- Enemigo
+IAEnemigo o-- JefeFinal
+
+IAAnimal o-- AnimalCompaniero
+@enduml

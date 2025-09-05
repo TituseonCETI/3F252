@@ -8,5 +8,5 @@ public:
     Foco() {}
     void Encender(){estado=true;}
     void Apagar(){estado=false;}
-    EstadoFisico LeerEstado(){return estado;}
+    EstadoFoco LeerEstado(){return estado;}
 };
